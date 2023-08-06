@@ -43,7 +43,9 @@ def create(_format, filename, **kwargs):
     if _format in drawers:
         drawer = drawers[_format](filename, **kwargs)
     else:
-        msg = 'failed to load %s image driver' % _format
+        msg = 'failed to load %r image driver (len(drawers)=%d)' % (
+            _format, len(drawers)
+        )
         raise RuntimeError(msg)
 
     if 'linejump' in kwargs.get('filters', []):
